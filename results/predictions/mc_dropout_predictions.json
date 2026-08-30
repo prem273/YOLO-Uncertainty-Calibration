@@ -1,0 +1,464 @@
+{
+  "image_id": "bus.jpg",
+  "device": "cpu",
+  "passes_requested": 5,
+  "batch_size": 5,
+  "batching_mode": "true_batched_stochastic_inference",
+  "total_inference_time_ms": 3440.3031000401825,
+  "average_time_per_pass_ms": 688.0606200080365,
+  "passes": [
+    {
+      "pass_id": 1,
+      "image_id": "bus.jpg",
+      "detections": [
+        {
+          "box_xyxy": [
+            13.991758346557617,
+            230.43284606933594,
+            806.6129150390625,
+            779.1157836914062
+          ],
+          "class_id": 5,
+          "class_name": "bus",
+          "confidence": 0.9564114212989807,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            670.4180908203125,
+            369.32763671875,
+            809.6605224609375,
+            876.37939453125
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9125795960426331,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            51.27662658691406,
+            399.2294921875,
+            247.4920196533203,
+            901.6401977539062
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8973445892333984,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            219.9207305908203,
+            404.46978759765625,
+            343.5135192871094,
+            876.6055908203125
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.893323540687561,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            154.21185302734375,
+            407.13568115234375,
+            341.8085021972656,
+            859.838134765625
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8339836001396179,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.0,
+            254.56021118164062,
+            32.71070861816406,
+            328.2620544433594
+          ],
+          "class_id": 11,
+          "class_name": "stop sign",
+          "confidence": 0.5419881939888,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.0,
+            550.5795288085938,
+            76.53697967529297,
+            846.6567993164062
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.34361088275909424,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.0,
+            550.7286376953125,
+            59.53629684448242,
+            864.7303466796875
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.2836430072784424,
+          "class_probabilities": null
+        }
+      ],
+      "inference_time_ms": 688.0606200080365,
+      "total_detections": 8,
+      "mean_confidence": 0.707860603928566
+    },
+    {
+      "pass_id": 2,
+      "image_id": "bus.jpg",
+      "detections": [
+        {
+          "box_xyxy": [
+            0.0,
+            231.73379516601562,
+            804.4577026367188,
+            760.2295532226562
+          ],
+          "class_id": 5,
+          "class_name": "bus",
+          "confidence": 0.9611465930938721,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            49.94596862792969,
+            397.63140869140625,
+            246.69580078125,
+            899.1080932617188
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9250795841217041,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            670.412109375,
+            389.8014831542969,
+            802.6648559570312,
+            877.0690307617188
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9203557372093201,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            209.51333618164062,
+            405.52947998046875,
+            345.6230163574219,
+            857.194091796875
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8730536103248596,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.24709904193878174,
+            254.1839141845703,
+            32.57357406616211,
+            324.57843017578125
+          ],
+          "class_id": 11,
+          "class_name": "stop sign",
+          "confidence": 0.4803849160671234,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.1263899803161621,
+            545.8780517578125,
+            75.2596664428711,
+            865.392333984375
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.34149619936943054,
+          "class_probabilities": null
+        }
+      ],
+      "inference_time_ms": 688.0606200080365,
+      "total_detections": 6,
+      "mean_confidence": 0.750252773364385
+    },
+    {
+      "pass_id": 3,
+      "image_id": "bus.jpg",
+      "detections": [
+        {
+          "box_xyxy": [
+            671.4718627929688,
+            391.5616760253906,
+            807.21240234375,
+            876.06640625
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9193153977394104,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            14.44566535949707,
+            231.0524444580078,
+            806.5728149414062,
+            766.0219116210938
+          ],
+          "class_id": 5,
+          "class_name": "bus",
+          "confidence": 0.8968555927276611,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            41.01838302612305,
+            393.7546081542969,
+            251.5416259765625,
+            902.9039306640625
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8944516777992249,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            224.5877685546875,
+            396.42962646484375,
+            341.12933349609375,
+            857.0875854492188
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8916199207305908,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.043953895568847656,
+            256.4609069824219,
+            33.01142883300781,
+            324.9374084472656
+          ],
+          "class_id": 11,
+          "class_name": "stop sign",
+          "confidence": 0.48182570934295654,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.016202688217163086,
+            551.0556640625,
+            57.69312286376953,
+            868.8511352539062
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.34802818298339844,
+          "class_probabilities": null
+        }
+      ],
+      "inference_time_ms": 688.0606200080365,
+      "total_detections": 6,
+      "mean_confidence": 0.738682746887207
+    },
+    {
+      "pass_id": 4,
+      "image_id": "bus.jpg",
+      "detections": [
+        {
+          "box_xyxy": [
+            19.230588912963867,
+            231.05421447753906,
+            806.2285766601562,
+            770.8587036132812
+          ],
+          "class_id": 5,
+          "class_name": "bus",
+          "confidence": 0.9445498585700989,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            49.1938591003418,
+            396.97552490234375,
+            279.8168029785156,
+            948.0272827148438
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9256135821342468,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            669.2314453125,
+            389.2587890625,
+            809.8445434570312,
+            877.2890625
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9106487035751343,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            219.1642608642578,
+            406.2779235839844,
+            346.51995849609375,
+            862.74658203125
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8739309310913086,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.0,
+            255.26414489746094,
+            32.845340728759766,
+            325.55126953125
+          ],
+          "class_id": 11,
+          "class_name": "stop sign",
+          "confidence": 0.465785413980484,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.3025660514831543,
+            556.0922241210938,
+            70.84497833251953,
+            874.7454223632812
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.2799472212791443,
+          "class_probabilities": null
+        }
+      ],
+      "inference_time_ms": 688.0606200080365,
+      "total_detections": 6,
+      "mean_confidence": 0.7334126184384028
+    },
+    {
+      "pass_id": 5,
+      "image_id": "bus.jpg",
+      "detections": [
+        {
+          "box_xyxy": [
+            0.0,
+            231.29371643066406,
+            810.0,
+            752.580810546875
+          ],
+          "class_id": 5,
+          "class_name": "bus",
+          "confidence": 0.9545037746429443,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            50.308387756347656,
+            396.7998046875,
+            300.24603271484375,
+            950.2454223632812
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9248849153518677,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            670.65087890625,
+            432.01885986328125,
+            809.6934814453125,
+            865.9203491210938
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.9038885235786438,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            220.24021911621094,
+            410.27447509765625,
+            347.17010498046875,
+            857.1842041015625
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8673321008682251,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            65.4743881225586,
+            398.8436584472656,
+            243.88720703125,
+            905.2714233398438
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.8619633913040161,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.0,
+            253.16506958007812,
+            33.074745178222656,
+            325.76361083984375
+          ],
+          "class_id": 11,
+          "class_name": "stop sign",
+          "confidence": 0.472409188747406,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.5295259952545166,
+            547.3309936523438,
+            74.41992950439453,
+            865.8896484375
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.30593904852867126,
+          "class_probabilities": null
+        },
+        {
+          "box_xyxy": [
+            0.0,
+            551.6253662109375,
+            62.0291633605957,
+            874.7521362304688
+          ],
+          "class_id": 0,
+          "class_name": "person",
+          "confidence": 0.2802475392818451,
+          "class_probabilities": null
+        }
+      ],
+      "inference_time_ms": 688.0606200080365,
+      "total_detections": 8,
+      "mean_confidence": 0.6963960602879524
+    }
+  ]
+}

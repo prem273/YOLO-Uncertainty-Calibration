@@ -1,0 +1,51 @@
+# YOLO Uncertainty Calibration Configuration
+
+## Baseline Configuration (Deterministic Inference Only)
+
+baseline:
+  model: yolov8n
+  pretrained: true
+  device: auto  # auto-detect GPU or use CPU
+  imgsz: 640
+  conf_threshold: 0.25
+  iou_threshold: 0.45
+
+inference:
+  batch_size: 1
+  device: auto
+  half: false  # Set to true for FP16 if GPU available
+
+output:
+  save_results: true
+  output_dir: results/
+  visualize: true
+  anno_dir: results/annotated_images/
+
+# Head-level MC Dropout Configuration
+dropout:
+  enabled: true
+  probability: 0.1
+
+mc_inference:
+  enabled: true
+  passes: 5
+  batch_size: 5
+
+# Uncertainty Quantification (will be used in later phases)
+# uncertainty:
+#   enabled: false
+#   epistemic_entropy: true
+#   localization_variance: true
+#   persistence_score: true
+
+# Greedy IoU association of MC-dropout detections
+clustering:
+  method: greedy_iou
+  iou_threshold: 0.5
+
+# Evaluation (will be used in later phases)
+# evaluation:
+#   enabled: false
+#   metric: d_ece
+#   corruptions: 15
+#   severity_tiers: 5
