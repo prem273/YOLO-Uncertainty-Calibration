@@ -100,6 +100,7 @@ def greedy_iou_clustering(predictions: Any, iou_threshold: float = 0.5) -> list[
                 "confidence": float(detection["confidence"]),
                 "class_id": int(detection["class_id"]),
                 "class_name": detection.get("class_name"),
+                "class_probabilities": detection.get("class_probabilities"),
             }
 
             best_cluster: dict[str, Any] | None = None

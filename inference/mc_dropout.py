@@ -16,6 +16,7 @@ from typing import Any
 
 import numpy as np
 import yaml
+from ultralytics.utils import nms
 
 from models.dropout_yolo import DropoutYOLO
 
@@ -30,7 +31,7 @@ class DetectionPrediction:
     confidence: float
     # YOLO Detect postprocessing exposes only the selected class/confidence;
     # complete class probability vectors are not available from Results.boxes.
-    class_probabilities: None = None
+    class_probabilities: list[float] | None = None
 
 
 @dataclass
@@ -111,13 +112,18 @@ class MCDropoutInference:
         return Path(source).name if isinstance(source, (str, Path)) else "in_memory_image"
 
     @staticmethod
-    def _extract_pass(result: Any, pass_id: int, image_id: str, elapsed_ms: float) -> PassPrediction:
+    def _extract_pass(
+        result: Any, pass_id: int, image_id: str, elapsed_ms: float, class_probabilities: list[list[float]]
+    ) -> PassPrediction:
         detections: list[DetectionPrediction] = []
         names = result.names
-        for box, confidence, class_id in zip(
+        if len(class_probabilities) != len(result.boxes):
+            raise RuntimeError("Class-score vectors could not be aligned with post-NMS detections.")
+        for box, confidence, class_id, probabilities in zip(
             result.boxes.xyxy.cpu().numpy(),
             result.boxes.conf.cpu().numpy(),
             result.boxes.cls.cpu().numpy(),
+            class_probabilities,
         ):
             class_index = int(class_id)
             detections.append(
@@ -126,9 +132,35 @@ class MCDropoutInference:
                     class_id=class_index,
                     class_name=names.get(class_index) if isinstance(names, dict) else names[class_index],
                     confidence=float(confidence),
+                    class_probabilities=probabilities,
                 )
             )
         return PassPrediction(pass_id, image_id, detections, elapsed_ms)
+
+    def _class_probabilities_for_results(self, results: list[Any], raw_predictions: Any) -> list[list[list[float]]]:
+        """Recover actual YOLO class-score vectors for the candidates retained by NMS."""
+        predictor = self.model.yolo.predictor
+        args = predictor.args
+        names = predictor.model.names
+        nc = len(names)
+        nms_output, keep_indices = nms.non_max_suppression(
+            raw_predictions.clone(),
+            args.conf,
+            args.iou,
+            args.classes,
+            args.agnostic_nms,
+            max_det=args.max_det,
+            nc=nc,
+            end2end=getattr(predictor.model, "end2end", False),
+            return_idxs=True,
+        )
+        probabilities: list[list[list[float]]] = []
+        for batch_index, (result, retained, indices) in enumerate(zip(results, nms_output, keep_indices)):
+            if len(result.boxes) != len(retained):
+                raise RuntimeError("Independent NMS did not reproduce the predictor's retained detections.")
+            vectors = raw_predictions[batch_index, 4 : 4 + nc, indices.long()].transpose(0, 1)
+            probabilities.append([[float(value) for value in vector] for vector in vectors.cpu().numpy()])
+        return probabilities
 
     def run(
         self,
@@ -158,14 +190,17 @@ class MCDropoutInference:
             # A source list causes Ultralytics to make a single current_batch_size-image tensor.
             sources = [source] * current_batch_size
             started = perf_counter()
-            results = self.model.predict(sources, stochastic=True, **predict_args)
+            results, raw_predictions = self.model.predict(
+                sources, stochastic=True, capture_class_probabilities=True, **predict_args
+            )
             elapsed_ms = (perf_counter() - started) * 1000
             total_elapsed_ms += elapsed_ms
             if len(results) != current_batch_size:
                 raise RuntimeError(f"Expected {current_batch_size} batch results, received {len(results)}.")
+            class_probabilities = self._class_probabilities_for_results(results, raw_predictions)
             per_pass_elapsed_ms = elapsed_ms / current_batch_size
             collected.extend(
-                self._extract_pass(result, start + offset + 1, image_id, per_pass_elapsed_ms)
+                self._extract_pass(result, start + offset + 1, image_id, per_pass_elapsed_ms, class_probabilities[offset])
                 for offset, result in enumerate(results)
             )
 

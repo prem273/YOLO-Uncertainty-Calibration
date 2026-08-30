@@ -31,12 +31,16 @@ mc_inference:
   passes: 5
   batch_size: 5
 
-# Uncertainty Quantification (will be used in later phases)
-# uncertainty:
-#   enabled: false
-#   epistemic_entropy: true
-#   localization_variance: true
-#   persistence_score: true
+# Phase 6 uncertainty metrics
+uncertainty:
+  entropy:
+    enabled: true
+    normalized: true
+  localization:
+    enabled: true
+    method: mean_coordinate_variance
+  persistence:
+    enabled: true
 
 # Greedy IoU association of MC-dropout detections
 clustering:

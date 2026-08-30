@@ -121,14 +121,33 @@ class DropoutYOLO:
         self.yolo.predictor = predictor_type(overrides=overrides, _callbacks=self.yolo.callbacks)
         self.yolo.predictor.setup_model(model=self.model, verbose=False)
 
-    def predict(self, source: Any, stochastic: bool = False, **kwargs: Any):
-        """Run ordinary deterministic or MC-dropout prediction on ``source``."""
+    def predict(
+        self, source: Any, stochastic: bool = False, capture_class_probabilities: bool = False, **kwargs: Any
+    ):
+        """Run prediction, optionally retaining real Detect-head class score vectors."""
         self._ensure_predictor()
         if stochastic:
             self.set_stochastic_mode()
         else:
             self.set_deterministic_mode()
-        return self.yolo.predict(source=source, **kwargs)
+        captured: list[Any] = []
+
+        def capture_head_output(_module: nn.Module, _inputs: Any, output: Any) -> None:
+            # Detect returns (decoded_predictions, feature_maps) for normal inference.
+            decoded = output[0] if isinstance(output, tuple) else output
+            captured.append(decoded.detach().clone())
+
+        hook = self.detect_head.register_forward_hook(capture_head_output) if capture_class_probabilities else None
+        try:
+            results = self.yolo.predict(source=source, **kwargs)
+        finally:
+            if hook is not None:
+                hook.remove()
+        if capture_class_probabilities:
+            if len(captured) != 1:
+                raise RuntimeError(f"Expected one Detect forward output, captured {len(captured)}.")
+            return results, captured[0]
+        return results
 
 
 def load_dropout_yolo(**kwargs: Any) -> DropoutYOLO:
