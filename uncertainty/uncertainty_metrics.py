@@ -48,6 +48,8 @@ def calculate_persistence(pass_ids: Sequence[int], total_passes: int) -> float:
     if total_passes < 1:
         raise ValueError("total_passes must be positive.")
     unique_passes = set(int(pass_id) for pass_id in pass_ids)
+    if any(pass_id < 1 or pass_id > total_passes for pass_id in unique_passes):
+        raise ValueError("Pass IDs must be within the inclusive range [1, total_passes].")
     if len(unique_passes) > total_passes:
         raise ValueError("More unique pass IDs than total stochastic passes.")
     return len(unique_passes) / total_passes

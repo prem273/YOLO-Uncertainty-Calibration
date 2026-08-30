@@ -1,0 +1,133 @@
+{
+  "source_uncertainty_file": "uncertainty_metrics.json",
+  "filtering_enabled": true,
+  "thresholds": {
+    "max_normalized_entropy": 0.1,
+    "max_localization_variance": 500.0,
+    "min_persistence": 0.8
+  },
+  "total_clusters": 6,
+  "accepted_clusters": 3,
+  "rejected_clusters": 3,
+  "acceptance_rate": 0.5,
+  "rejection_count_by_reason": {
+    "localization_variance_exceeds_max": 1,
+    "normalized_entropy_exceeds_max": 2
+  },
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "class_id": 5,
+      "class_name": "bus",
+      "representative_bbox": [
+        17.96850700378418,
+        230.80899353027343,
+        796.5636962890625,
+        761.7429321289062
+      ],
+      "mean_confidence": 0.9313779711723328,
+      "entropy": 0.05105180379518008,
+      "normalized_entropy": 0.011650272362842325,
+      "localization_variance": 55.99860242208241,
+      "persistence": 1.0,
+      "accepted": true,
+      "rejection_reasons": []
+    },
+    {
+      "cluster_id": 2,
+      "class_id": 0,
+      "class_name": "person",
+      "representative_bbox": [
+        657.5366617838541,
+        385.8018493652344,
+        809.3043212890625,
+        877.2150065104166
+      ],
+      "mean_confidence": 0.8728074332078298,
+      "entropy": 0.005792236859176402,
+      "normalized_entropy": 0.0013218168993642987,
+      "localization_variance": 163.07564441730372,
+      "persistence": 1.0,
+      "accepted": true,
+      "rejection_reasons": []
+    },
+    {
+      "cluster_id": 3,
+      "class_id": 0,
+      "class_name": "person",
+      "representative_bbox": [
+        49.57911834716797,
+        398.09185791015625,
+        250.26534118652344,
+        903.4706176757812
+      ],
+      "mean_confidence": 0.9091284036636352,
+      "entropy": 0.001865747317264344,
+      "normalized_entropy": 0.0004257727012659284,
+      "localization_variance": 22.99851684260182,
+      "persistence": 1.0,
+      "accepted": true,
+      "rejection_reasons": []
+    },
+    {
+      "cluster_id": 4,
+      "class_id": 0,
+      "class_name": "person",
+      "representative_bbox": [
+        221.4079335530599,
+        422.220942179362,
+        345.81601969401044,
+        855.9838358561198
+      ],
+      "mean_confidence": 0.8550269504388174,
+      "entropy": 0.0038109248299855523,
+      "normalized_entropy": 0.000869671763250058,
+      "localization_variance": 849.8871831564206,
+      "persistence": 1.0,
+      "accepted": false,
+      "rejection_reasons": [
+        "localization_variance_exceeds_max"
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "class_id": 11,
+      "class_name": "stop sign",
+      "representative_bbox": [
+        0.13922595977783203,
+        254.5274444580078,
+        31.614101028442384,
+        324.83818359375
+      ],
+      "mean_confidence": 0.49662054777145387,
+      "entropy": 0.5295046789863491,
+      "normalized_entropy": 0.12083556836385041,
+      "localization_variance": 1.5545000512029605,
+      "persistence": 1.0,
+      "accepted": false,
+      "rejection_reasons": [
+        "normalized_entropy_exceeds_max"
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "class_id": 0,
+      "class_name": "person",
+      "representative_bbox": [
+        0.1882983148097992,
+        549.7054214477539,
+        76.66565465927124,
+        869.27978515625
+      ],
+      "mean_confidence": 0.3418158143758774,
+      "entropy": 0.7377545061421134,
+      "normalized_entropy": 0.16835920172288465,
+      "localization_variance": 73.1847192749956,
+      "persistence": 1.0,
+      "accepted": false,
+      "rejection_reasons": [
+        "normalized_entropy_exceeds_max"
+      ]
+    }
+  ]
+}

@@ -47,6 +47,20 @@ clustering:
   method: greedy_iou
   iou_threshold: 0.5
 
+# Provisional Phase 8 uncertainty-gate thresholds. Select these from validation
+# data in a later phase; no threshold optimization is performed here.
+filtering:
+  enabled: true
+  entropy:
+    enabled: true
+    max_normalized_entropy: 0.1
+  localization:
+    enabled: true
+    max_variance: 500.0
+  persistence:
+    enabled: true
+    min_persistence: 0.8
+
 # Evaluation (will be used in later phases)
 # evaluation:
 #   enabled: false

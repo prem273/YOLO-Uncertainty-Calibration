@@ -34,6 +34,10 @@ class TestUncertaintyMetrics(unittest.TestCase):
     def test_persistence(self):
         self.assertEqual(calculate_persistence([1, 2, 3, 4, 5], 5), 1.0)
         self.assertAlmostEqual(calculate_persistence([1, 3, 5], 5), 0.6)
+        with self.assertRaises(ValueError):
+            calculate_persistence([0, 1], 5)
+        with self.assertRaises(ValueError):
+            calculate_persistence([1], 0)
 
     def test_combined_cluster_uncertainty(self):
         cluster = {
